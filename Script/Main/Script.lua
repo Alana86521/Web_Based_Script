@@ -1,7 +1,6 @@
 local HttpService = game:GetService("HttpService")
 local workspace = game:GetService("Workspace")
 
--- Create the External-Exploit folder
 local exploitFolder = Instance.new("Folder")
 exploitFolder.Name = "External-Exploit"
 exploitFolder.Parent = workspace
@@ -27,10 +26,9 @@ local function downloadFileFromGitHub(githubUrl, fileName, fileType)
             end
             
         elseif fileType == "text" then
-            -- Create a new text file
             local textFile = Instance.new("TextLabel")
             textFile.Name = fileName
-            textFile.Text = response  -- Assign the content to the text file
+            textFile.Text = response
             textFile.Size = UDim2.new(0, 400, 0, 50)
             textFile.Parent = exploitFolder
             print(fileName .. " has been downloaded and added to the folder.")
