@@ -1,0 +1,36 @@
+local HttpService = game:GetService("HttpService")
+local url = "http://localhost:5000/command"
+
+local function enableESP()
+    print("ESP Enabled")
+end
+
+local function increaseSpeed()
+    print("Speed Increased")
+end
+
+local function processCommand(command)
+    if command == "enable_esp" then
+        enableESP()
+    elseif command == "increase_speed" then
+        increaseSpeed()
+    else
+        print("Unknown command")
+    end
+end
+
+while true do
+    local success, response = pcall(function()
+        return HttpService:GetAsync(url)
+    end)
+
+    if success then
+        local data = HttpService:JSONDecode(response)
+        local command = data.command
+        processCommand(command)
+    else
+        print("Failed to get data from server")
+    end
+
+    wait(1)
+end
